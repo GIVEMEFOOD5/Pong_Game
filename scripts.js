@@ -1,4 +1,4 @@
-const gameContainer = document.getElementById('game-container'); 
+const gameContainer = document.getElementById('game-container');
 const paddle1 = document.getElementById('paddle1');
 const paddle2 = document.getElementById('paddle2');
 const ball = document.getElementById('ball');
