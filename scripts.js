@@ -14,28 +14,38 @@ let ballSpeedY = 2;
 const paddleSpeed = 5;
 let player1Score = 0;
 let player2Score = 0;
+const keysPressed = {};
 
-document.addEventListener('keydown', (event) => 
-{
-    switch (event.key)
-    {
-        case 'w':
-            if (paddle1Y > 0) paddle1Y -= paddleSpeed;
-            break;
-        case 's':
-            if (paddle1Y < 300) paddle1Y += paddleSpeed;
-            break;
-        case 'ArrowUp':
-            if (paddle2Y > 0) paddle2Y -= paddleSpeed;
-            break;
-        case 'ArrowDown':
-            if (paddle2Y < 300) paddle2Y += paddleSpeed;
-            break;
-    }
-    paddle1.style.top = `${paddle1Y}px`;
-    paddle1.style.top = `${paddle1Y}px`;
-
+document.addEventListener('keydown', (event) => {
+    keysPressed[event.key] = true;
+    updatePaddles();
 });
+
+document.addEventListener('keyup', (event) => {
+    keysPressed[event.key] = false;
+});
+
+function updatePaddles() {
+    // Player 1 controls
+    if (keysPressed['w'] && paddle1Y > 0) {
+        paddle1Y -= paddleSpeed;
+    }
+    if (keysPressed['s'] && paddle1Y < 300) {
+        paddle1Y += paddleSpeed;
+    }
+
+    // Player 2 controls
+    if (keysPressed['ArrowUp'] && paddle2Y > 0) {
+        paddle2Y -= paddleSpeed;
+    }
+    if (keysPressed['ArrowDown'] && paddle2Y < 300) {
+        paddle2Y += paddleSpeed;
+    }
+
+    // Update paddle positions
+    paddle1.style.top = `${paddle1Y}px`;
+    paddle2.style.top = `${paddle2Y}px`;
+}
 
 function updateBall()
 {
@@ -53,7 +63,7 @@ function updateBall()
     {
         ballSpeedX = -ballSpeedX;
     }
-    else if (ballX <= 770 && ballY >= paddle2Y && ballY <= paddle2Y +100) 
+    else if (ballX >= 770 && ballY >= paddle2Y && ballY <= paddle2Y +100) 
     {
         ballSpeedX = -ballSpeedX;
     }
