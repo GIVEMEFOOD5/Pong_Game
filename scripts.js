@@ -9,9 +9,9 @@ let paddle1Y = 150;
 let paddle2Y = 150;
 let ballX = 390;
 let ballY = 190;
-let ballSpeedX = 2;
-let ballSpeedY = 2;
-const paddleSpeed = 5;
+let ballSpeedX = 6;
+let ballSpeedY = 5;
+const paddleSpeed = 50;
 let player1Score = 0;
 let player2Score = 0;
 const keysPressed = {};
@@ -99,8 +99,8 @@ function resetBall()
 {
     ballX = 390;
     ballY = 190;
-    ballSpeedX = Math.random() > 0.5 ? 2: -2;
-    ballSpeedy = Math.random() > 0.5 ? 2: -2;
+    //ballSpeedX = Math.random() > 0.5 ? 2: -2;
+    //ballSpeedy = Math.random() > 0.5 ? 2: -2;
 }
 
 function gameLoop()
